@@ -1,0 +1,148 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch from scratch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${relativeFileDirname}/ns3.36.1-${fileBasenameNoExtension}-${input:buildType}",
+            // "args": ["-t", "16","-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/gpt_7B-world_size1024-tp2-pp2-ep1-gbs2048-mbs1-seq4096-MOE-False-GEMM-False-flash_attn-True.txt", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/HPN_7_0_infrawaves_1024_gpus_8_in_one_server_with_400Gbps_A100.txt"],
+            // "args": ["-t", "32","-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/trainai_pp/13b_128", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/HPN_7_0_infrawaves_128_gpus_8_in_one_server_with_400Gbps_A100"],
+            // "args": ["-t", "32","-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/trainai_pp/13b_1024", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/trainai_pp/corss_7_0_infrawaves_1024_gpus_8_in_one_server_with_400Gbps_A100.txt"],
+
+            // "args": ["-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/workload4.txt", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/topo4.txt"],
+            "args": ["-t", "32","-w", "./workload/13b_512", "-n", "./topo/corss_7_0_infrawaves_512_gpus_8_in_one_server_with_400Gbps_A100.txt"],
+
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            // "preLaunchTask": "Build",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/build/lib/"
+                },
+                {
+                    "name": "AS_SEND_LAT",
+                    "value": "3"
+                },
+                {
+                    "name": "AS_NVLS_ENABLE",
+                    "value": "1"
+                },
+                {
+                    "name": "AS_LOG_LEVEL",
+                    "value": "0"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Python Debugger: Current File with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "-g",
+                "512",
+                "-gt",
+                "A100",
+                "-bw",
+                "400Gbps",
+                "-nvbw",
+                "2400Gbps"
+            ]
+        },
+        {
+            "name": "(lldb) Launch from scratch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${relativeFileDirname}/ns3.36.1-${fileBasenameNoExtension}-${input:buildType}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/build/lib/"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
+        {
+            "name": "(gdb) Launch testrunner",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/utils/ns3-dev-test-runner-${input:buildType}",
+            "args": [
+                "--suite=${selectedText}"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/build/lib/"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(lldb) Launch testrunner",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/utils/ns3-dev-test-runner-${input:buildType}",
+            "args": [
+                "--suite=${selectedText}"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "Build",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/build/lib/"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "buildType",
+            "description": "What is the build option?",
+            "options": [
+                "debug",
+                "default",
+                "optimized",
+                "release",
+                "minsizerel"
+            ],
+            "default": "default"
+        }
+    ]
+}
