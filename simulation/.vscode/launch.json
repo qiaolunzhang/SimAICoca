@@ -14,7 +14,8 @@
             // "args": ["-t", "32","-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/trainai_pp/13b_1024", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/trainai_pp/corss_7_0_infrawaves_1024_gpus_8_in_one_server_with_400Gbps_A100.txt"],
 
             // "args": ["-w", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/workload4.txt", "-n", "/media/zbs/19b2ada9-b99a-41ca-9c1a-b128a038d8c5/simai_hello/simulation/topo4.txt"],
-            "args": ["-t", "32","-w", "./workload/13b_512", "-n", "./topo/corss_7_0_infrawaves_512_gpus_8_in_one_server_with_400Gbps_A100.txt"],
+            // "args": ["-t", "32","-w", "./workload/13b_512", "-n", "./topo/corss_7_0_infrawaves_512_gpus_8_in_one_server_with_400Gbps_A100.txt"],
+            "args": ["-t", "16","-w", "${workspaceFolder}/samples/sample1/microAllReduce.txt", "-n", "${workspaceFolder}/samples/sample1/Spectrum-X_128g_8gps_100Gbps_A100", "-c", "${workspaceFolder}/samples/sample1/SimAI.conf" ],
 
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
